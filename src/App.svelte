@@ -1,19 +1,25 @@
 <script lang="ts">
   import Card from './lib/Card.svelte'
-  import type { YouTuber } from './lib/data';
+  import LoadingOverlay from './lib/LoadingOverlay.svelte'
 
-  const youtubers: YouTuber[] = [{
-    name: '社築',
-    subscribers: 491000,
-    link: 'https://www.youtube.com/channel/UCKMYISTJAQ8xTplUPHiABlA',
-    imgUrl: 'https://yt3.ggpht.com/ytc/AKedOLSntkdxKpfXT8hCxMHMRMAof4q-Rpuf6JaqD9Tp=s88-c-k-c0x00ffffff-no-rj',
-    date: '2018-05-25T00:13:18Z'
-  }]
+  import type { YouTuber } from './lib/data'
+  import { getYouTubers } from './lib/data'
+
+  let loading = true
+  let youtubers: YouTuber[] = []
+
+  getYouTubers().then((result) => {
+    youtubers = result
+    loading = false
+  })
 </script>
 
 <main>
   <h1>プロセカ関係YouTubeチャンネル一覧</h1>
   <div class="cards">
+    <!-- {#if loading} -->
+      <LoadingOverlay loading={loading} color="#00fedf"></LoadingOverlay>
+    <!-- {/if} -->
     {#each youtubers as youtuber}  
       <Card youtuber={youtuber} />
     {/each}

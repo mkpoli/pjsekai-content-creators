@@ -11,11 +11,11 @@
   <h3>{youtuber.name}</h3>
   <div class="info">
     <a href={youtuber.link}>
-      <img src={youtuber.imgUrl} alt={`${youtuber.name}のアイコン`}>
+      <img src={youtuber.profilePictureUrl} alt={`${youtuber.name}のアイコン`}>
     </a>
     <div class="stat">
       <p>登録者数  {youtuber.subscribers || '（非表示）'}</p>
-      <p>創設時間  {moment(youtuber.date).format('ll')}</p>
+      <p>創設時間  {moment(youtuber.creationDate).format('ll')}</p>
     </div>
   </div>
 </div>

@@ -2,13 +2,17 @@
 
 // const  = google.sheets('v4')
 
-export function getYouTubers() {
+export interface YouTuber {
+  channelID: string
+  link: string
+  profilePictureUrl: string
+  name: string
+  creationDate: string
+  subscribers: number
+  customUrl: string
 }
 
-export interface YouTuber {
-    link: string,
-    imgUrl: string,
-    name: string,
-    date: string,
-    subscribers: number
+export async function getYouTubers() {
+  const result = await (await fetch('/api/data')).text()
+  return JSON.parse(result) as YouTuber[]
 }
