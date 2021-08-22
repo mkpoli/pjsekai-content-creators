@@ -36,7 +36,6 @@
                 0 32px 64px rgba(0,0,0,0.02);
 
     padding: 1em 2em;
-    /* margin: 1em; */
   }
 
   .info {

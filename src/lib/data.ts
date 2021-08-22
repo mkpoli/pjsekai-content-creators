@@ -1,7 +1,3 @@
-// import sheets from '@googleapis/sheets'
-
-// const  = google.sheets('v4')
-
 export interface YouTuber {
   channelID: string
   link: string
@@ -12,7 +8,8 @@ export interface YouTuber {
   customUrl: string
 }
 
-export async function getYouTubers() {
-  const result = await (await fetch('/api/data')).text()
-  return JSON.parse(result) as YouTuber[]
+export async function getYouTubers(): Promise<YouTuber[]> {
+  const response = await fetch(import.meta.env.PROD ? '/api/data' : 'https://pjsekai-content-creators.vercel.app/api/data')
+  const data = response.json();
+  return data as Promise<YouTuber[]>
 }

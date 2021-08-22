@@ -43,7 +43,8 @@
   }
 
   .loading-icon {
-    size: 8rem;
+    width: 8rem;
+    height: 8rem;
 
     color: var(--loading-color);
 

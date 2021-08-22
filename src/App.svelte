@@ -38,11 +38,6 @@
     color: rgb(68, 68, 102);
   }
 
-   /* {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
-  } */
   main {
     max-width: 800px;
     margin: 0 auto; 
@@ -51,7 +46,6 @@
   .cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* justify-items: center; */
     gap: 0.8em;
   }
 
