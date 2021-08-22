@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { google } from 'googleapis'
 const sheets = google.sheets('v4');
 const auth = new google.auth.GoogleAuth({
