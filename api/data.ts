@@ -19,10 +19,27 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   google.options({
     auth: authClient,
   })
+  
+  const HEADER = ['channelID', 'name', 'subscribers', 'customUrl', 'link', 'creationDate', 'profilePictureUrl']
 
-  const res = await sheets.spreadsheets.get({
-    spreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
-  })
-
-  response.status(200).send(`Hello ${name}! ${res}`);
-};
+  try {
+    const res = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
+      range: 'YouTube'
+    })
+    const values = res.data.values
+    response.status(200).send(
+      JSON.stringify(
+        values.slice(1).map(
+          (x) => Object.fromEntries(
+            x.map(
+              (v, i) => [HEADER[i], v]
+            )
+          )
+        )
+      )
+    )
+  } catch (err) {
+    response.status(500).send(`Error!`)
+  }
+}
