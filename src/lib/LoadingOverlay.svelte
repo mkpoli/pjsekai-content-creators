@@ -15,6 +15,10 @@
 </template>
 
 <style>
+  .hidden {
+    display: none !important;
+  }
+
   .overlay {
     position: fixed;
     inset: 0 0 0 0;

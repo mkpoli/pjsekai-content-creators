@@ -17,14 +17,12 @@
 <main>
   <h1>プロセカ関係YouTubeチャンネル一覧</h1>
   <div class="cards">
-    <!-- {#if loading} -->
-      <LoadingOverlay loading={loading} color="#00fedf"></LoadingOverlay>
-    <!-- {/if} -->
     {#each youtubers as youtuber}  
       <Card youtuber={youtuber} />
     {/each}
   </div>
 </main>
+<LoadingOverlay loading={loading} color="#00fedf"></LoadingOverlay>
 
 <svelte:head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
