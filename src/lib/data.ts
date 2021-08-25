@@ -1,3 +1,5 @@
+import exampleData from './example_data.json'
+
 export interface YouTuber {
   channelID: string
   link: string
@@ -9,7 +11,12 @@ export interface YouTuber {
 }
 
 export async function getYouTubers(): Promise<YouTuber[]> {
-  const response = await fetch(import.meta.env.PROD ? '/api/data' : 'https://pjsekai-content-creators.vercel.app/api/data')
-  const data = response.json();
-  return data as Promise<YouTuber[]>
+  let data: Promise<YouTuber[]>
+  if (import.meta.env.PROD) {
+    const response = await fetch(import.meta.env.PROD ? '/api/data' : 'https://pjsekai-content-creators.vercel.app/api/data')
+    data = response.json();
+  } else {
+    data = Promise.resolve(exampleData as YouTuber[])
+  }
+  return data 
 }
