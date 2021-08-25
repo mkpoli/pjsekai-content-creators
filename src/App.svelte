@@ -16,6 +16,10 @@
 
 <main>
   <h1>プロセカ関係YouTubeチャンネル一覧</h1>
+  <p>
+    ※ アイコンをクリックするとチャンネルに飛びます。<br>
+    ※ 追加リクエストなどがありましたら、<a href="https://twitter.com/_mkpoli/status/1429708704648105985?s=20">こちらのツイート</a>までお願いします！
+  </p>
   <div class="cards">
     {#each youtubers as youtuber}  
       <Card youtuber={youtuber} />
@@ -51,5 +55,19 @@
     .cards {
       grid-template-columns: 1fr;
     }
+  }
+
+  a {
+    transition: .2s;
+    text-decoration: none;
+    color: #00d7fc;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a:visited {
+    color: #00d7fc;
   }
 </style>
