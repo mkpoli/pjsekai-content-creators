@@ -21,9 +21,15 @@
     ※ 追加リクエストなどがありましたら、<a href="https://twitter.com/_mkpoli/status/1429708704648105985?s=20">こちらのツイート</a>までお願いします！
   </p>
   <div class="cards">
-    {#each youtubers as youtuber}  
-      <Card youtuber={youtuber} />
-    {/each}
+    {#if loading}
+      {#each Array(7) as _, i}
+        <Card skeleton/>
+      {/each}
+    {:else}
+      {#each youtubers as youtuber}  
+        <Card youtuber={youtuber} />
+      {/each}
+    {/if}
   </div>
 </main>
 <LoadingOverlay loading={loading} color="#00fedf"></LoadingOverlay>
