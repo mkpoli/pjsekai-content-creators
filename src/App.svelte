@@ -37,7 +37,7 @@
 <style>
   :root {
     font-family: "M PLUS 1p", sans-serif;
-    color: rgb(68, 68, 102);
+    color: var(--color-text-main);
   }
 
   main {
