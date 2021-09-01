@@ -12,17 +12,18 @@
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.11",
     "@tsconfig/svelte": "^2.0.1",
     "@vercel/node": "^1.12.1",
+    "cssnano": "^5.0.6",
     "googleapis": "^84.0.0",
+    "postcss": "^8.3.5",
+    "postcss-lab-function": "^3.1.2",
+    "postcss-load-config": "^3.1.0",
+    "postcss-nesting": "^8.0.1",
     "svelte": "^3.37.0",
     "svelte-check": "^2.1.0",
     "svelte-preprocess": "^4.7.4",
     "tslib": "^2.2.0",
     "typescript": "^4.3.2",
-    "vite": "^2.4.4",
-    "postcss": "^8.3.5",
-    "postcss-load-config": "^3.1.0",
-    "autoprefixer": "^10.3.1",
-    "cssnano": "^5.0.6"
+    "vite": "^2.4.4"
   },
   "dependencies": {
     "@googleapis/sheets": "^0.3.0",
