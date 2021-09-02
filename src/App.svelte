@@ -1,5 +1,6 @@
 <script lang="ts">
   import Card from './lib/Card.svelte'
+  import Footer from './lib/Footer.svelte'
   import LoadingOverlay from './lib/LoadingOverlay.svelte'
 
   import type { YouTuber } from './lib/data'
@@ -32,7 +33,8 @@
     {/if}
   </div>
 </main>
-<LoadingOverlay loading={loading} color="#00fedf"></LoadingOverlay>
+<LoadingOverlay loading={loading} color="#00fedf"/>
+<Footer/>
 
 <svelte:head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
