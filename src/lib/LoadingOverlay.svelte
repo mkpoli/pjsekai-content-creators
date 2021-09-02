@@ -1,6 +1,17 @@
 <script lang="ts">
   export let loading: boolean
   export let color: string
+
+  let count = 0
+  let ellipsis = ""
+
+  setInterval(() => {
+    if (count > 3) {
+      count = 0
+    }
+    ellipsis = "·".repeat(count)
+    count += 1
+  }, 800)
 </script>
 
 <template>
@@ -9,10 +20,19 @@
       <svg class="loading-icon" viewBox="0 0 24 24">
         <path fill="currentColor" d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
       </svg>
-      <p class="loading-text">Loading</p>
+      <div class="loading-text-container">
+        <div class="loading-text">
+          Loading
+          <div class="ellipsis">{ellipsis}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<svelte:head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+</svelte:head>
 
 <style>
   .hidden {
@@ -26,7 +46,7 @@
     display: grid;
     place-items: center;
 
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.4);
 
     z-index: 999;
   }
@@ -55,18 +75,21 @@
     animation: spin 1s linear infinite;
   }
 
-  @keyframes ellipsis {
-    to {
-      width: 1em;
-    }
+  .loading-text-container {
+    text-align: center;
   }
 
-  .loading-text:after {
-    content: '…';
-    overflow: hidden;
+  .loading-text {
     display: inline-block;
-    vertical-align: bottom;
-    width: 0;
-    animation: ellipsis steps(4,end) 900ms infinite;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+  }
+
+  .ellipsis {
+    position: absolute;
+    top: 0;
+    left: 100%;
   }
 </style>
