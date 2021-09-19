@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Card from './lib/Card.svelte'
-  import Footer from './lib/Footer.svelte'
-  import LoadingOverlay from './lib/LoadingOverlay.svelte'
-
-  import type { YouTuber } from './lib/data'
-  import { getYouTubers } from './lib/data'
+  import Card from '$lib/Card.svelte'
+  import Footer from '$lib/Footer.svelte'
+  import LoadingOverlay from '$lib/LoadingOverlay.svelte'
+  import type { SortKey } from '$lib/Sorter.svelte'
+  import type { YouTuber } from '$lib/data'
+  import { getYouTubers } from '$lib/data'
 
   let loading = true
   let youtubers: YouTuber[] = []
