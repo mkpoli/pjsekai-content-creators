@@ -2,13 +2,43 @@
   import Card from '$lib/Card.svelte'
   import Footer from '$lib/Footer.svelte'
   import LoadingOverlay from '$lib/LoadingOverlay.svelte'
+  import Sorter from '$lib/Sorter.svelte'
   import type { SortKey } from '$lib/Sorter.svelte'
   import type { YouTuber } from '$lib/data'
   import { getYouTubers } from '$lib/data'
+  import { persist, localStorage } from "@macfja/svelte-persistent-store"
+  import { writable } from "svelte/store"
+
+  let ascending = persist(writable(false), localStorage(), 'sort-ascending')
+  let currentKeyID = persist(writable(0), localStorage(), 'sort-current-key-id')
 
   let loading = true
   let youtubers: YouTuber[] = []
-
+  // let ascending: Boolean = false
+  const SORT_KEYS: SortKey[] = [
+    {
+      name: '登録者数順',
+      algorithm(a: YouTuber, b: YouTuber) {
+        return a.subscribers - b.subscribers
+      },
+      defaultAscending: false
+    },
+    {
+      "name": "タイトル順",
+      algorithm(a: YouTuber, b: YouTuber) {
+        return a.name.localeCompare(b.name)
+      },
+      defaultAscending: true
+    },
+    {
+      "name": "創設時間順",
+      algorithm(a: YouTuber, b: YouTuber) {
+        return Date.parse(a.creationDate) - Date.parse(b.creationDate)
+      },
+      defaultAscending: true
+    }
+  ]
+  $: sorted = [...youtubers].sort((a, b) => SORT_KEYS[$currentKeyID]?.algorithm(a, b) * ($ascending ? 1 : -1))
   getYouTubers().then((result) => {
     youtubers = result
     loading = false
@@ -21,13 +51,16 @@
     ※ アイコンをクリックするとチャンネルに飛びます。<br>
     ※ 追加や<abbr title="「掲載しないでほしい」">不掲載</abbr>のリクエスト等がありましたら、<a href="https://twitter.com/_mkpoli/status/1429708704648105985?s=20">こちらのツイート</a>までお願いします！
   </p>
+  <div class="sort">
+    <Sorter keys={SORT_KEYS} bind:currentID={$currentKeyID} bind:ascending={$ascending} />
+  </div>
   <div class="cards">
     {#if loading}
       {#each Array(7) as _, i}
         <Card skeleton/>
       {/each}
     {:else}
-      {#each youtubers as youtuber}  
+      {#each sorted as youtuber}  
         <Card youtuber={youtuber} />
       {/each}
     {/if}
@@ -60,17 +93,11 @@
     }
   }
 
-  a {
-    transition: .2s;
-    text-decoration: none;
-    color: #00d7fc;
-  }
 
-  a:hover {
-    text-decoration: underline;
-  }
-
-  a:visited {
-    color: #00d7fc;
+  .sort {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    padding: 1em;
   }
 </style>

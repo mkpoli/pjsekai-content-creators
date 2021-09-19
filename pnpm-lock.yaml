@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@googleapis/sheets': ^0.3.0
   '@iconify/svelte': ^2.0.0
+  '@macfja/svelte-persistent-store': ^1.2.0
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.11
   '@tsconfig/svelte': ^2.0.1
   '@vercel/node': ^1.12.1
@@ -24,6 +25,7 @@ specifiers:
 
 dependencies:
   '@googleapis/sheets': 0.3.0
+  '@macfja/svelte-persistent-store': 1.2.0_svelte@3.42.2
   moment: 2.29.1
 
 devDependencies:
@@ -74,6 +76,16 @@ packages:
   /@iconify/svelte/2.0.0:
     resolution: {integrity: sha512-zhuX8Rf0F8Xwv4xfZRt5s80hqFCSMtY9kZonqKpc9bPVNMDKBp6WFfu7VsJaSNI3mQAClY1Ff9zdRBxUVtt28Q==}
     dev: true
+
+  /@macfja/svelte-persistent-store/1.2.0_svelte@3.42.2:
+    resolution: {integrity: sha512-vftMaR7vwNwJx7atDjzFagBEZpOXgnrKqeutHfTtEreprP/izjb0LfvwLKQK29cO7gT9iifHQdOoD9kGynasOw==}
+    peerDependencies:
+      svelte: ^3.0
+    dependencies:
+      browser-cookies: 1.2.0
+      idb-keyval: 5.1.5
+      svelte: 3.42.2
+    dev: false
 
   /@rollup/pluginutils/4.1.1:
     resolution: {integrity: sha512-clDjivHqWGXi7u+0d2r2sBi4Ie6VLEAzWMIkvJLnDmxoOhBYOTfzGbOQBA32THHm11/LiJbd01tJUpJsbshSWQ==}
@@ -217,6 +229,10 @@ packages:
     dependencies:
       fill-range: 7.0.1
     dev: true
+
+  /browser-cookies/1.2.0:
+    resolution: {integrity: sha1-/KP/ubamOq3E2MCZnGtX0Pp9KbU=}
+    dev: false
 
   /browserslist/4.16.8:
     resolution: {integrity: sha512-sc2m9ohR/49sWEbPj14ZSSZqp+kbi16aLao42Hmn3Z8FpjuMaq2xCA2l4zl9ITfyzvnvyE0hcg62YkIGKxgaNQ==}
@@ -688,6 +704,12 @@ packages:
       debug: 4.3.2
     transitivePeerDependencies:
       - supports-color
+
+  /idb-keyval/5.1.5:
+    resolution: {integrity: sha512-J1utxYWQokYjy01LvDQ7WmiAtZCGUSkVi9EIBfUSyLOr/BesnMIxNGASTh9A1LzeISSjSqEPsfFdTss7EE7ofQ==}
+    dependencies:
+      safari-14-idb-fix: 1.0.6
+    dev: false
 
   /import-cwd/3.0.0:
     resolution: {integrity: sha512-4pnzH16plW+hgvRECbDWpQl3cqtvSofHWh44met7ESfZ8UZOWWddm8hEyDTqREJ9RbYHY8gi8DqmaelApoOGMg==}
@@ -1382,6 +1404,10 @@ packages:
     dependencies:
       mri: 1.1.6
     dev: true
+
+  /safari-14-idb-fix/1.0.6:
+    resolution: {integrity: sha512-oTEQOdMwRX+uCtWCKT1nx2gAeSdpr8elg/2gcaKUH00SJU2xWESfkx11nmXwTRHy7xfQoj1o4TTQvdmuBosTnA==}
+    dev: false
 
   /safe-buffer/5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
