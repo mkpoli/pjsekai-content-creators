@@ -1,3 +1,48 @@
+@import-sanitize;
+@import-sanitize "sanitize/forms.css";
+
 :root {
   --color-text-main: lch(29.999% 21.194 288.585);
+
+  --color-aqua: #00d7fc;
+  --color-blue: #3d8fbb;
+  --color-miku: #33ffe4;
+  --color-miku-green: lch(63.307% 131.968 202.794);
+
+  font-family: "M PLUS 1p", sans-serif;
+  color: var(--color-text-main);
+}
+
+h1 {
+  font-weight: 900;
+}
+
+h3 {
+  font-weight: 800;
+}
+
+a {
+  transition: .2s;
+  text-decoration: none;
+  color: var(--color-miku-green);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--color-miku-green);
+}
+
+a:focus {
+  text-decoration: underline;
+  border-radius: 999px;
+  /* color: var(--color-miku); */
+  /* box-shadow:0 0 0 3px var(--color-miku); */
+  /* padding: 0.25em 0.25em; */
+  /* transform: scale(1.03); */
+  /* text-shadow: 0 0 1px var(--color-aqua); */
+  font-weight: 700;
+  outline: none;
 }

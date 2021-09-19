@@ -56,6 +56,18 @@
     position: relative;
   }
 
+  .card:focus-within {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+                0 2px 4px rgba(0,0,0,0.06), 
+                0 4px 8px rgba(0,0,0,0.05), 
+                0 8px 16px rgba(0,0,0,0.04),
+                0 16px 32px rgba(0,0,0,0.03), 
+                0 32px 64px rgba(0,0,0,0.02),
+                0 0 0 3px var(--color-miku);
+    transform: scale(1.035);
+    transition: all 0.2s ease;
+  }
+
   .info {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -85,6 +97,15 @@
     border-radius: 100%;
     border: 1px solid #ccc;
   }
+
+  a:focus {
+    outline: none;
+  }
+
+  /* a:focus .profile-image {
+    box-shadow: 0 0 0 3px var(--color-text-main);
+  }
+   */
 
   /* Skeleton Loading Effect */
   @keyframes skeleton-loading {

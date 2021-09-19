@@ -39,15 +39,10 @@
 <svelte:head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700;800;900&display=swap" rel="stylesheet">
 </svelte:head>
 
 <style>
-  :root {
-    font-family: "M PLUS 1p", sans-serif;
-    color: var(--color-text-main);
-  }
-
   main {
     max-width: 800px;
     margin: 0 auto; 
