@@ -19,7 +19,7 @@
   <h1>プロセカ関係YouTubeチャンネル一覧</h1>
   <p>
     ※ アイコンをクリックするとチャンネルに飛びます。<br>
-    ※ 追加リクエストなどがありましたら、<a href="https://twitter.com/_mkpoli/status/1429708704648105985?s=20">こちらのツイート</a>までお願いします！
+    ※ 追加や<abbr title="「掲載しないでほしい」">不掲載</abbr>のリクエスト等がありましたら、<a href="https://twitter.com/_mkpoli/status/1429708704648105985?s=20">こちらのツイート</a>までお願いします！
   </p>
   <div class="cards">
     {#if loading}
