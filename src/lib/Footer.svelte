@@ -36,8 +36,7 @@
   a.twitter:hover svg {
     
     /* transform: scale(1.5); */
-    transform: scale(1.25);
-    filter: drop-shadow(0 0 3px #55acee);
+    transform: scale(1.35);
   }
 
   a.twitter:focus svg {
