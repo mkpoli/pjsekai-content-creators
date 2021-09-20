@@ -51,7 +51,9 @@
     ※ アイコンをクリックするとチャンネルに飛びます。<br>
     ※ 追加や<abbr title="「掲載しないでほしい」">不掲載</abbr>のリクエスト等がありましたら、<a href="https://twitter.com/_mkpoli/status/1429708704648105985?s=20">こちらのツイート</a>までお願いします！
   </p>
-  <div class="sort">
+  <div class="header">
+    <span>{youtubers?.length ?? 0} チャンネル</span>
+    <div class="spacer"></div>
     <Sorter keys={SORT_KEYS} bind:currentID={$currentKeyID} bind:ascending={$ascending} />
   </div>
   <div class="cards">
@@ -94,10 +96,11 @@
   }
 
 
-  .sort {
+  .header {
     display: flex;
     width: 100%;
-    justify-content: right;
+    align-items: center;
+    justify-content: stretch;
     padding: 1em;
   }
 </style>
