@@ -16,7 +16,7 @@ const auth = new google.auth.GoogleAuth({
   projectId: process.env.GOOGLE_PROJECT_ID
 })
 
-const client = new faunadb.Client({ secret: process.env.FAUNA_ADMIN_KEY })
+const client = new faunadb.Client({ secret: process.env.FAUNA_ADMIN_KEY, domain: "db.us.fauna.com" })
 
 const HEADER = ['channelID', 'name', 'subscribers', 'customUrl', 'link', 'creationDate', 'profilePictureUrl'] as const
 type Header = typeof HEADER[number]
