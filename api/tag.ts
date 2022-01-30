@@ -2,14 +2,9 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { client, q, faunadb } from './fauna'
 export default async (request: VercelRequest, response: VercelResponse) => {
   if (request.method === 'POST') {
-    console.log('request.body = ', request.body)
-    const { data: { name, id } } = request.body
-    console.log('name = ', name)
-    console.log('id = ', id)
-
     try {
       await client.query(
-        q.Call(q.Function('AddTagToChannel'), [name, id])
+        q.Call(q.Function('AddTagToChannel'), [request.body.data.name, request.body.data.id])
       )
       response.status(200).end()
     } catch (error) {
