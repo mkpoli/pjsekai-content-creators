@@ -86,7 +86,7 @@
   .cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.8em;
+    gap: 1em;
   }
 
   @media screen and (max-width: 900px) {
