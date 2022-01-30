@@ -3,11 +3,13 @@
   import Footer from '$lib/Footer.svelte'
   import LoadingOverlay from '$lib/LoadingOverlay.svelte'
   import Sorter from '$lib/Sorter.svelte'
+  import Tag from '$lib/Tag.svelte'
   import type { SortKey } from '$lib/Sorter.svelte'
   import type { YouTuber } from '$lib/data'
   import { getYouTubers } from '$lib/data'
   import { persist, localStorage } from "@macfja/svelte-persistent-store"
   import { writable } from "svelte/store"
+  import { tagFilters } from '$lib/filter'
 
   let ascending = persist(writable(false), localStorage(), 'sort-ascending')
   let currentKeyID = persist(writable(0), localStorage(), 'sort-current-key-id')
@@ -38,7 +40,9 @@
       defaultAscending: true
     }
   ]
-  $: sorted = [...youtubers].sort((a, b) => SORT_KEYS[$currentKeyID]?.algorithm(a, b) * ($ascending ? 1 : -1))
+  $: sorted = [...youtubers]
+    .sort((a, b) => SORT_KEYS[$currentKeyID]?.algorithm(a, b) * ($ascending ? 1 : -1))
+    .filter(({ tags }) => $tagFilters.every(tag => tags.find(({ name }) => name === tag)))
   getYouTubers().then((result) => {
     youtubers = result
     loading = false
@@ -53,6 +57,14 @@
   </p>
   <div class="header">
     <span>{youtubers?.length ?? 0} チャンネル</span>
+    <div class="spacer"></div>
+    <div class="tags">
+      {#each $tagFilters as tag, i}
+        <Tag
+          name={tag}
+          on:click={() => { $tagFilters = $tagFilters.filter((t) => t !== tag) }}/>
+      {/each}
+    </div>
     <div class="spacer"></div>
     <Sorter keys={SORT_KEYS} bind:currentID={$currentKeyID} bind:ascending={$ascending} />
   </div>
@@ -102,5 +114,17 @@
     align-items: center;
     justify-content: stretch;
     padding: 1em;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 0.25em;
+    gap: 0.5em 0.5em;
+
+    font-size: 0.9em;
   }
 </style>

@@ -1,11 +1,13 @@
 <script lang="ts">
   import moment from 'moment'
   import youtubeFail from '../assets/youtube_fail.png'
-  import Icon from '@iconify/svelte'
+  import Tag from '$lib/Tag.svelte'
 
   moment.locale('ja')
 
   import { tick } from 'svelte'
+
+  import { tagFilters } from './filter'
 
   import { addTagToChannel } from './data'
   import type { YouTuber } from './data'
@@ -47,16 +49,21 @@
     </div>
     <div class="tags">
       {#each [...youtuber.tags].sort((a, b) => b.count - a.count) as { name }}
-        <button tabindex="0"><Icon icon="ph:hash-fill"/><span>{name}</span></button>
+        <Tag
+          {name}
+          on:click={() => {
+            if (!$tagFilters.includes(name)) {
+              $tagFilters.push(name)
+            }
+            $tagFilters = $tagFilters
+          }}
+        />
       {/each}
       {#if !editing}
-        <button
-          class="plus"
-          tabindex="0"
+        <Tag
+          plus
           on:click={async () => { editing = true; await tick(); tagInput.focus() }}
-        >
-          <Icon icon="ion:add" height="1.2em"/>
-        </button>
+        />
       {:else}
         <input
           type="text"
