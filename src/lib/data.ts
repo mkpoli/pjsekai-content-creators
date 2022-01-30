@@ -29,7 +29,7 @@ export async function getYouTubers(): Promise<YouTuber[]> {
 }
 
 export async function addTagToChannel(tag: string, channelID: string): Promise<void> {
-  await fetch('/api/data', {
+  await fetch('/api/tag', {
     method: 'POST',
     body: JSON.stringify({
       data: {
