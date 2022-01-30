@@ -4,6 +4,8 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   if (request.method === 'POST') {
     console.log('request.body = ', request.body)
     const { data: { name, id } } = request.body
+    console.log('name = ', name)
+    console.log('id = ', id)
 
     try {
       await client.query(
