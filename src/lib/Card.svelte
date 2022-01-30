@@ -1,11 +1,15 @@
 <script lang="ts">
   import moment from 'moment'
+  import youtubeFail from '../assets/youtube_fail.png'
+
   moment.locale('ja')
 
   import type { YouTuber } from './data'
   
   export let youtuber: YouTuber | null = null
   export let skeleton: boolean = false
+
+  let failed: boolean = false
 </script>
 
 <div class="card">
@@ -13,7 +17,21 @@
     <h3>{youtuber.name}</h3>
     <div class="info">
       <a href={youtuber.link}>
-        <img class="profile-image" src={youtuber.profilePictureUrl} alt={`${youtuber.name}のアイコン`}>
+        {#if !failed}
+          <img
+            class="profile-image"
+            src={youtuber.profilePictureUrl}
+            alt={`${youtuber.name}のアイコン`}
+            on:error={() => {failed = true}}
+            on:load={() => {failed = false}}
+          >
+        {:else}
+          <img
+            class="profile-image failed"
+            src={youtubeFail}
+            alt={`${youtuber.name}のアイコン（取得失敗）`}
+          >
+        {/if}
       </a>
       <div class="stat">
         <p>登録者数  {youtuber.subscribers || '（非表示）'}</p>
@@ -21,7 +39,7 @@
       </div>
     </div>
   {:else}
-    <h3 class="skeleton skeleton-text"></h3>
+    <h3 class="skeleton skeleton-text"> </h3>
     <div class="info">
       <div class="skeleton profile-image"></div>
       <div class="stat">
@@ -96,6 +114,10 @@
     width: 72px;
     border-radius: 100%;
     border: 1px solid #ccc;
+  }
+
+  .profile-image.failed {
+    border-radius: 1em;
   }
 
   a:focus {
