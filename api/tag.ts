@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { client, q, faunadb } from './fauna'
 export default async (request: VercelRequest, response: VercelResponse) => {
   if (request.method === 'POST') {
+    console.log('request.body = ', request.body)
     const { data: { name, id } } = request.body
 
     try {
