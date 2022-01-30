@@ -1,8 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { google } from 'googleapis'
-import faunadb from 'faunadb'
 
-const q = faunadb.query
+import { client, q } from './fauna'
 
 const sheets = google.sheets('v4');
 const auth = new google.auth.GoogleAuth({
@@ -15,8 +14,6 @@ const auth = new google.auth.GoogleAuth({
   ],
   projectId: process.env.GOOGLE_PROJECT_ID
 })
-
-const client = new faunadb.Client({ secret: process.env.FAUNA_ADMIN_KEY, domain: "db.us.fauna.com" })
 
 const HEADER = ['channelID', 'name', 'subscribers', 'customUrl', 'link', 'creationDate', 'profilePictureUrl'] as const
 type Header = typeof HEADER[number]

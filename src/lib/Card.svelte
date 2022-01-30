@@ -7,6 +7,7 @@
 
   import { tick } from 'svelte'
 
+  import { addTagToChannel } from './data'
   import type { YouTuber } from './data'
   
   export let youtuber: YouTuber | null = null
@@ -72,6 +73,7 @@
                 } else {
                   existingTag.count += 1
                 }
+                addTagToChannel(inputTag, youtuber.channelID)
                 youtuber.tags = youtuber.tags
                 inputTag = ''
               }
