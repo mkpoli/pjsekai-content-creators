@@ -54,6 +54,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     }
     response.status(200).json(result)
   } catch (err) {
-    response.status(500).send(`Error!`)
+    console.error(err)
+    response.status(500).send(`Error: ${err}`)
   }
 }
