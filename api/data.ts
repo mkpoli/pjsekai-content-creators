@@ -23,9 +23,12 @@ type Header = typeof HEADER[number]
 
 async function getTags(channels: Record<Header, string>[]) {
   return await client.query(
-    q.Map(channels, (channel) => {
-      q.Call(q.Function("GetTagsFromID"), q.Select("channelID", channel))
-    })
+    q.Map(
+      channels,
+      q.Lambda("channel",
+        q.Call(q.Function("GetTagsFromID"), q.Select("channelID", q.Var("channel")))    
+      )
+    )
   ) as { id: string, tags: { name: string, count: number }[] }[]
 }
 
