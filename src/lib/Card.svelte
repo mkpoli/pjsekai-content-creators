@@ -1,8 +1,11 @@
 <script lang="ts">
   import moment from 'moment'
   import youtubeFail from '../assets/youtube_fail.png'
+  import Icon from '@iconify/svelte'
 
   moment.locale('ja')
+
+  import { tick } from 'svelte'
 
   import type { YouTuber } from './data'
   
@@ -10,6 +13,9 @@
   export let skeleton: boolean = false
 
   let failed: boolean = false
+  let editing = false
+  let inputTag = ''
+  let tagInput: HTMLInputElement
 </script>
 
 <div class="card">
@@ -38,6 +44,43 @@
         <p>創設時間  {moment(youtuber.creationDate).format('ll')}</p>
       </div>
     </div>
+    <div class="tags">
+      {#each [...youtuber.tags].sort((a, b) => b.count - a.count) as { name }}
+        <button tabindex="0"><Icon icon="ph:hash-fill"/><span>{name}</span></button>
+      {/each}
+      {#if !editing}
+        <button
+          class="plus"
+          tabindex="0"
+          on:click={async () => { editing = true; await tick(); tagInput.focus() }}
+        >
+          <Icon icon="ion:add" height="1.2em"/>
+        </button>
+      {:else}
+        <input
+          type="text"
+          placeholder="Enterキーで確定する"
+          bind:value={inputTag}
+          bind:this={tagInput}
+          on:blur={() => { editing = false }}
+          on:keydown={(e) => {
+            if (e.key === 'Enter') {
+              if (inputTag) {
+                const existingTag = youtuber.tags.find(({ name }) => name === inputTag)
+                if (!existingTag) {
+                  youtuber.tags.push({ name: inputTag, count: 1 })
+                } else {
+                  existingTag.count += 1
+                }
+                youtuber.tags = youtuber.tags
+                inputTag = ''
+              }
+              editing = false
+            }
+          }}
+        />
+      {/if}
+    </div>
   {:else}
     <h3 class="skeleton skeleton-text"> </h3>
     <div class="info">
@@ -46,7 +89,7 @@
         <p class="skeleton skeleton-text"></p>
         <p class="skeleton skeleton-text"></p>
       </div>
-    </div>    
+    </div>
   {/if}
 </div>
 <style lang="postcss">
@@ -124,11 +167,6 @@
     outline: none;
   }
 
-  /* a:focus .profile-image {
-    box-shadow: 0 0 0 3px var(--color-text-main);
-  }
-   */
-
   /* Skeleton Loading Effect */
   @keyframes skeleton-loading {
     0% {
@@ -198,5 +236,49 @@
   h3.skeleton {
     height: 1.2em;
     margin-bottom: 0.5em;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 0.25em;
+    gap: 0.5em 0.5em;
+
+    font-size: 0.9em;
+  }
+
+  .tags button {
+    border: 1px solid color-mod(var(--color-aqua) lightness(30%));
+    color: color-mod(var(--color-aqua) lightness(30%));
+    border-radius: 9999px;
+
+    padding: 0.1em 0.6em;
+    /* background: #00cdf420; */
+    transition: background 0.25s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 1.8em;
+  }
+  
+  .tags button:hover {
+    background: color-mod(var(--color-aqua) alpha(0.1));
+    box-shadow: 0 0 5px 1px color-mod(var(--color-aqua) alpha(0.1));
+  }
+
+  .tags button:focus-visible {
+    outline: none;
+    color: white;
+    
+    background: color-mod(var(--color-aqua) lightness(30%));
+  }
+
+  .tags button:focus-visible > * {
+    filter: drop-shadow(0 0 0.5em white);
   }
 </style>

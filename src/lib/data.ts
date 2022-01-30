@@ -7,7 +7,13 @@ export interface YouTuber {
   name: string
   creationDate: string
   subscribers: number
-  customUrl: string
+  customUrl: string,
+  tags: Tag[]
+}
+
+export interface Tag {
+  name: string
+  count: number
 }
 
 export async function getYouTubers(): Promise<YouTuber[]> {

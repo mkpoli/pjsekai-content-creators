@@ -6,7 +6,13 @@
         "name": "CouTube Japan 公式チャンネル",
         "creationDate": "2019-01-01T05:24",
         "subscribers": 321,
-        "customUrl": ""
+        "customUrl": "",
+        "tags": [
+            {
+                "name": "公式",
+                "count": 4
+            }
+        ]
     },{
         "channelID": "UCrXUsMBcfTVqwAS7DKg9C0Q",
         "link": "https://www.youtube.com/channel/UCrXUsMBcfTVqwAS7DKg9C0Q",
@@ -14,7 +20,17 @@
         "name": "YouTube Japan 公式チャンネル",
         "creationDate": "2020-01-01T05:25",
         "subscribers": 1,
-        "customUrl": ""
+        "customUrl": "",
+        "tags": [
+            {
+                "name": "VTuber",
+                "count": 5
+            },
+            {
+                "name": "公式",
+                "count": 1
+            }
+        ]
     },{
         "channelID": "UCrXUsMBcfTVqwAS7DKg9C0Q",
         "link": "https://www.youtube.com/channel/UCrXUsMBcfTVqwAS7DKg9C0Q",
@@ -22,7 +38,17 @@
         "name": "DYouTube Japan 公式チャンネル",
         "creationDate": "2021-01-01T05:26",
         "subscribers": 9999199,
-        "customUrl": ""
+        "customUrl": "",
+        "tags": [
+            {
+                "name": "公式",
+                "count": 2
+            },
+            {
+                "name": "歌い手",
+                "count": 1
+            }
+        ]
     },{
         "channelID": "UCrXUsMBcfTVqwAS7DKg9C0Q",
         "link": "https://www.youtube.com/channel/UCrXUsMBcfTVqwAS7DKg9C0Q",
@@ -30,7 +56,8 @@
         "name": "XouTube Japan 公式チャンネル",
         "creationDate": "2023-01-01T05:27",
         "subscribers": 99992399,
-        "customUrl": ""
+        "customUrl": "",
+        "tags": []
     },{
         "channelID": "UCrXUsMBcfTVqwAS7DKg9C0Q",
         "link": "https://www.youtube.com/channel/UCrXUsMBcfTVqwAS7DKg9C0Q",
@@ -38,6 +65,7 @@
         "name": "AouTube Japan 公式チャンネル",
         "creationDate": "2024-01-01T05:28",
         "subscribers": 9599,
-        "customUrl": ""
+        "customUrl": "",
+        "tags": []
     }
 ]
