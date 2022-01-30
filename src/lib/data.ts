@@ -7,7 +7,13 @@ export interface YouTuber {
   name: string
   creationDate: string
   subscribers: number
-  customUrl: string
+  customUrl: string,
+  tags: Tag[]
+}
+
+export interface Tag {
+  name: string
+  count: number
 }
 
 export async function getYouTubers(): Promise<YouTuber[]> {
@@ -20,4 +26,16 @@ export async function getYouTubers(): Promise<YouTuber[]> {
     data = Promise.resolve(exampleData as YouTuber[])
   }
   return data 
+}
+
+export async function addTagToChannel(tag: string, channelID: string): Promise<void> {
+  await fetch('/api/tag', {
+    method: 'POST',
+    body: JSON.stringify({
+      data: {
+        name: tag,
+        id: channelID
+      }
+    })
+  })
 }
