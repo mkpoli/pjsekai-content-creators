@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@googleapis/sheets": "^0.3.0",
-    "@macfja/svelte-persistent-store": "^1.2.0",
-    "moment": "^2.29.1"
+    "@macfja/svelte-persistent-store": "^1.2.0"
   }
 }

@@ -1,9 +1,6 @@
 <script lang="ts">
-  import moment from 'moment'
   import youtubeFail from '../assets/youtube_fail.png'
   import Tag from '$lib/Tag.svelte'
-
-  moment.locale('ja')
 
   import { tick } from 'svelte'
 
@@ -19,6 +16,9 @@
   let editing = false
   let inputTag = ''
   let tagInput: HTMLInputElement
+
+  const numberFormat = new Intl.NumberFormat('ja-JP')
+  const datetimeFormat = new Intl.DateTimeFormat('ja-JP')
 </script>
 
 <div class="card">
@@ -44,8 +44,8 @@
       </a>
       <div class="stat">
         <p>登録者数  {youtuber.subscribers || '（非表示）'}</p>
-        <p>視聴回数  {youtuber.viewCount}</p>
-        <p>創設時間  {moment(youtuber.creationDate).format('ll')}</p>
+        <p>視聴回数  {numberFormat.format(youtuber.viewCount)}</p>
+        <p>創設時間  {datetimeFormat.format(new Date(youtuber.creationDate))}</p>
       </div>
     </div>
     <div class="tags">
