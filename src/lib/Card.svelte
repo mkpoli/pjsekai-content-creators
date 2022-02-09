@@ -44,6 +44,7 @@
       </a>
       <div class="stat">
         <p>登録者数  {youtuber.subscribers || '（非表示）'}</p>
+        <p>視聴回数  {youtuber.viewCount}</p>
         <p>創設時間  {moment(youtuber.creationDate).format('ll')}</p>
       </div>
     </div>
@@ -144,6 +145,11 @@
     gap: 1em;
   }
 
+  .info > a {
+    display: flex;
+    align-items: center;
+  }
+
   .stat {
     display: flex;
     flex-direction: column;
@@ -152,7 +158,7 @@
 
     & p {
       margin: 0;
-      margin-bottom: 0.5em;
+      margin-bottom: 0.25em;
     }
   }
 

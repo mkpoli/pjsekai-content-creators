@@ -15,7 +15,16 @@ const auth = new google.auth.GoogleAuth({
   projectId: process.env.GOOGLE_PROJECT_ID
 })
 
-const HEADER = ['channelID', 'name', 'subscribers', 'customUrl', 'link', 'creationDate', 'profilePictureUrl'] as const
+const HEADER = [
+  'channelID',
+  'name',
+  'subscribers',
+  'customUrl',
+  'link',
+  'creationDate',
+  'profilePictureUrl',
+  'viewCount'
+] as const
 type Header = typeof HEADER[number]
 
 async function getTags(channels: Record<Header, string>[]) {

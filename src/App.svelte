@@ -26,14 +26,21 @@
       defaultAscending: false
     },
     {
-      "name": "タイトル順",
+      name: '視聴回数順',
+      algorithm(a: YouTuber, b: YouTuber) {
+        return a.viewCount - b.viewCount
+      },
+      defaultAscending: false
+    },
+    {
+      name: 'タイトル順',
       algorithm(a: YouTuber, b: YouTuber) {
         return a.name.localeCompare(b.name)
       },
       defaultAscending: true
     },
     {
-      "name": "創設時間順",
+      name: '創設時間順',
       algorithm(a: YouTuber, b: YouTuber) {
         return Date.parse(a.creationDate) - Date.parse(b.creationDate)
       },

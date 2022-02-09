@@ -8,6 +8,7 @@ export interface YouTuber {
   creationDate: string
   subscribers: number
   customUrl: string,
+  viewCount: number
   tags: Tag[]
 }
 
